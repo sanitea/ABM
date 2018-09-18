@@ -1,40 +1,38 @@
 import random 
+import operator 
+import matplotlib.pyplot
 
-#Set up variables 
-y0 = 50
-x0 = 500
-y1 = 50
-x1 = 500
+#function 
+def distance_between(agents_row_a, agents_row_b):
+    answer = ((agents_row_a[0] - agents_row_b[0])**2) + ((agents_row_a[1] - agents_row_b[1])**2)**0.5
+    return answer
+    print (agents_row_a)
+    print (agents_row_b)
 
-#Random walk one step y0
-if random.random() < 0.5:
-    y0 = y0 + 1
-else:
-    y0 = y0 - 1
-    
-   #Random walk one step x0
-if random.random() < 0.5:
-    x0 = x0 + 1
-else:
-    x0 = x0 - 1
+#Variables 
+num_of_agents = 10
+num_of_interations = 100
+agents = []
 
-#Random walk one step y1
-if random.random() < 0.5:
-    y1 = y1 + 1
-else:
-    y1 = y1 - 1
-    
-   #Random walk one step x1
-if random.random() < 0.5:
-    x1 = x1 + 5
-else:
-    x1 = x1 - 5
-    
+#Agents intiating 
+for i in range (num_of_agents):
+    agents.append([random.randint(0,100),random.randint(0,100)])
 
-    
-print (y0, y1)
-print (x0, x1)
+#Agents Moving 
+for j in range (num_of_interations):
+    for i in range (num_of_agents):
+        if random.random() < 0.5:
+            agents[i][0] = (agents[i][0] + 1) % 100
+        else:
+            agents[i][0] = (agents[i][0] - 1) % 100
+            
+        if random.random() < 0.5:
+            agents[i][0] = (agents[i][0] + 1) % 100
+        else:
+            agents[i][0] = (agents[i][0] - 1) % 100 
 
-answer = ((y0-y1)**2) + ((x0-x1)**2)*0.5
-
-print (answer)
+#Distance 
+for i in range (num_of_agents):
+    for j in range (num_of_agents):
+        distance = distance_between(agents[i - 1], agents[j])
+        print (distance)
