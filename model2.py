@@ -10,29 +10,29 @@ def distance_between(agents_row_a, agents_row_b):
 
 num_of_agents = 10
 num_of_iterations = 100
-environment = []
-agents = []
+neighbourhood = 20
+a = agentClass.Agent(environment, agents)
 
-#Environment 
+
+#Environment. Empty row, append rowlist to environment, append rowlist. 
 f = open('in.txt', newline='') 
 reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
 for row in reader:	
     rowlist = [] 
     environment.append(rowlist)
     for value in row:
-        rowlist.append(value)	
-        print(value) 				
+        rowlist.append(value)					
 f.close() 
 
 # Make the agents.
 for i in range(num_of_agents):
-    agents.append(agentClass.Agent(environment))
+    agents.append(agentClass.Agent(environment, agents))
 
 # Move the agents.
 for j in range(num_of_iterations):
     for i in range(num_of_agents):
-        agents[i].move()
-        agents[i].eat()
+        agentClass.agents[i].move(environment, agents)
+        agentClass.agents[i].eat(environment, agents)
 
 
 #Find out the distances of the agents and don't compare same item to same item 
