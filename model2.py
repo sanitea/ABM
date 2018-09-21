@@ -11,8 +11,10 @@ def distance_between(agents_row_a, agents_row_b):
 num_of_agents = 10
 num_of_iterations = 100
 neighbourhood = 20
-a = agentClass.Agent(environment, agents)
-
+a = agentClass.Agent([], [])
+agents = []
+environment = []
+neighbourhood = 20
 
 #Environment. Empty row, append rowlist to environment, append rowlist. 
 f = open('in.txt', newline='') 
@@ -29,10 +31,11 @@ for i in range(num_of_agents):
     agents.append(agentClass.Agent(environment, agents))
 
 # Move the agents.
-for j in range(num_of_iterations):
-    for i in range(num_of_agents):
-        agentClass.agents[i].move(environment, agents)
-        agentClass.agents[i].eat(environment, agents)
+for i in range (num_of_iterations):
+    for j in range(num_of_agents):
+        agents[j].move()
+        agents[j].eat()
+        agents[j].share_with_nbh()
 
 
 #Find out the distances of the agents and don't compare same item to same item 
@@ -43,8 +46,6 @@ for agents_row_a in agents:
             print (agents_row_a, agents_row_b)
         else: 
             print ("Snap")
-        
-
 
 #Show environment 
 matplotlib.pyplot.xlim(0, 99)
