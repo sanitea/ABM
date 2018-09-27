@@ -35,7 +35,7 @@ for i in range (num_of_iterations):
     for j in range(num_of_agents):
         agents[j].move()
         agents[j].eat()
-        agents[j].share_with_nbh()
+        agents[j].share_with_neighbours()
 
 
 #Find out the distances of the agents and don't compare same item to same item 

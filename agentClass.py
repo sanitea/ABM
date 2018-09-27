@@ -1,9 +1,5 @@
 import random 
 
-#share information with agents 
-def share_with_nbh ():
-    return ("cats")
-
 #function to find the distance between agents using Pythagous 
 def distance_between(agents_row_a, agents_row_b):
     return (((agents_row_a.x - agents_row_b.x)**2) + 
@@ -18,7 +14,7 @@ class Agent ():
         self.environment = environment
         self.store = 0
         self.agents = agents     
-        self.share_with_nbh = share_with_nbh
+        self.share_with_neighbours = list 
 
         
     def move(self):
@@ -41,5 +37,9 @@ class Agent ():
             self.environment[self.y][self.x] -= 10
             self.store += 10
             
+    #share information with agents 
+    def share_with_neighbours (neighbourhood):
+        return (neighbourhood)
+
 
         
