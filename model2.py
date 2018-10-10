@@ -1,20 +1,29 @@
 import random
 import operator
 import matplotlib.pyplot
+import matplotlib.animation
 import agentClass
 import csv 
 
+#Calculates the distance between agents 
 def distance_between(agents_row_a, agents_row_b):
     return (((agents_row_a.x - agents_row_b.x)**2) + 
     ((agents_row_a.y - agents_row_b.y)**2))**0.5
 
+#These's are variables 
+environment = []
+agents = []
+a = agentClass.Agent(environment, agents)
+neighbourhood = 20
 num_of_agents = 10
 num_of_iterations = 100
-neighbourhood = 20
-a = agentClass.Agent([], [])
-agents = []
-environment = []
-neighbourhood = 20
+
+
+#fig = matplotlib.pyplot.figure(figsize=(7, 7))
+#ax = fig.add_axes([0, 0, 1, 1])
+
+
+
 
 #Environment. Empty row, append rowlist to environment, append rowlist. 
 f = open('in.txt', newline='') 
@@ -28,8 +37,10 @@ f.close()
 
 # Make the agents.
 for i in range(num_of_agents):
-    agents.append(agentClass.Agent(environment, agents))
+    agents.append(agentClass.Agent(environment))
 
+
+    
 # Move the agents.
 for i in range (num_of_iterations):
     for j in range(num_of_agents):
@@ -51,6 +62,13 @@ for agents_row_a in agents:
 matplotlib.pyplot.xlim(0, 99)
 matplotlib.pyplot.ylim(0, 99)
 matplotlib.pyplot.imshow(environment)
+
+
 for i in range(num_of_agents):
     matplotlib.pyplot.scatter(agents[i].x,agents[i].y)
+    
+
+    
+
+animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=10)    
 matplotlib.pyplot.show()

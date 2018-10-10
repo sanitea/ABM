@@ -1,44 +1,47 @@
-import random 
-#import operator 
-#import matplotlib.pyplot
+import random
+import operator
+import matplotlib.pyplot
+import agentframework
 
-#function for finding the difference 
 def distance_between(agents_row_a, agents_row_b):
-    answer = (((agents_row_a[0] - agents_row_b[0])**2) + ((agents_row_a[1] - agents_row_b[1])**2))**0.5
-    return answer
-    print (agents_row_a)
-    print (agents_row_b)
+    return (((agents_row_a.x - agents_row_b.x)**2) +
+    ((agents_row_a.y - agents_row_b.y)**2))**0.5
 
-
-#Variables 
+environment = []
+agents = list
+a = agentframework.Agent(environment, agents)
+a.num_of_agents = 10
 num_of_agents = 10
-num_of_interations = 100
-agents = []
+a.num_of_iterations = 100
+num_of_iterations = 100
 
-#Agents instanciating  
-for i in range (num_of_agents):
-    agents.append([random.randint(0,99),random.randint(0,99)])
+#Environment. Empty row, append rowlist to environment, append rowlist. 
+f = open('in.txt', newline='') 
+reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
+for row in reader:	
+    rowlist = [] 
+    environment.append(rowlist)
+    for value in row:
+        rowlist.append(value)					
+f.close() 
 
-#Agents Moving. Modulus operator 
-for j in range (num_of_interations):
-    for i in range (num_of_agents):
-        if random.random() < 0.5:
-            agents[i][0] = (agents[i][0] + 1) % 100
-        else:
-            agents[i][0] = (agents[i][0] - 1) % 100
-            
-        if random.random() < 0.5:
-            agents[i][0] = (agents[i][0] + 1) % 100
-        else:
-            agents[i][0] = (agents[i][0] - 1) % 100 
+# Make the agents.
+for i in range(num_of_agents):
+    agents.append(environment)
+
+# Move the agents.
+for j in range(num_of_iterations):
+    for i in range(num_of_agents):
+        agents[i].move()
 
 
-#At the moment this loops through the agents, compares them with each other to make sure they aren't the same, then works out the distance        
+
+matplotlib.pyplot.xlim(0, 99)
+matplotlib.pyplot.ylim(0, 99)
+for i in range(num_of_agents):
+    matplotlib.pyplot.scatter(agents[i].x,agents[i].y)
+matplotlib.pyplot.show()
+
 for agents_row_a in agents:
     for agents_row_b in agents:
-        if agents_row_a != agents_row_b:
-            distance = distance_between(agents_row_a, agents_row_b)
-            print (agents_row_a, agents_row_b)
-        else: 
-            print ("Snap")
-        print (distance)
+        distance = distance_between(agents_row_a, agents_row_b) 

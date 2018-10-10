@@ -1,47 +1,18 @@
 import random 
 
-#function to find the distance between agents using Pythagous 
-def distance_between(agents_row_a, agents_row_b):
-    return (((agents_row_a.x - agents_row_b.x)**2) + 
-    ((agents_row_a.y - agents_row_b.y)**2))**0.5
-
 #Agent class
-class Agent ():
+class Agent():
         
-        def __init__ (self):
-            self.environment = environment
+        def __init__ (self, environment, agents):
+
+            self.environment = []
             self.store = 0
             self.agents = list
-            self.share_with_neighbours = list 
-            self.num_of_iterations = int
+            self.x = random.randint(0,99)
+            self.y = random.randint(0,99)
+            self.num_of_iterations = 100
+            self.num_of_agents = 10 
         
-        #@property
-       # def x(self):
-           # return self._x
-
-       # @x.setter
-       # def x(self, value):
-        #    self._x = value
-
-     #   @x.deleter
-      #  def x(self):
-       #     del self._x  
-        
-        #@property
-        #def y(self):
-          #  return self.y
-
-        #@y.setter
-        #def y(self, value):
-         #   self._y = value
-
-        #@y.deleter
-        #def y(self):
-         #   del self._y
-            
-
-            pass
-
         
         def move(self):
                 
@@ -64,8 +35,8 @@ class Agent ():
                 self.store += 10
             
         #share information with agents 
-        def share_with_neighbours (neighbourhood):
-            return (neighbourhood)
+        #def share_with_neighbours (neighbourhood):
+         #   return (neighbourhood)
 
 
         
