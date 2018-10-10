@@ -35,7 +35,7 @@ def update(frame_number):
         else:
             agents[i][1]  = (agents[i][1] - 1) % 99 
         
-    if random.random() < 0.1:
+    if random.random() < 0.01:
         carry_on = False
         print("stopping condition")
     
