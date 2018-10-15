@@ -17,58 +17,31 @@ ax = fig.add_axes([0, 0, 1, 1])
 for i in range(num_of_agents):
     agents.append([random.randint(0,100),random.randint(0,100)])
 
-carry_on = True	
-	
 def update(frame_number):
     
     fig.clear()   
-    global carry_on
-    
+
     for i in range(num_of_agents):
-        if random.random() < 0.5:
-            agents[i][0]  = (agents[i][0] + 1) % 99 
-        else:
-            agents[i][0]  = (agents[i][0] - 1) % 99
+            if random.random() < 0.5:
+                agents[i][0]  = (agents[i][0] + 1) % 99 
+            else:
+                agents[i][0]  = (agents[i][0] - 1) % 99
+            
+            if random.random() < 0.5:
+                agents[i][1]  = (agents[i][1] + 1) % 99 
+            else:
+                agents[i][1]  = (agents[i][1] - 1) % 99 
         
-        if random.random() < 0.5:
-            agents[i][1]  = (agents[i][1] + 1) % 99 
-        else:
-            agents[i][1]  = (agents[i][1] - 1) % 99 
-        
-    if random.random() < 0.01:
-        carry_on = False
-        print("stopping condition")
+   
     
     for i in range(num_of_agents):
         matplotlib.pyplot.scatter(agents[i][0],agents[i][1])
-        #print(agents[i][0],agents[i][1])
-
-		
-def gen_function(b = [0]):
-    a = 0
-    global carry_on #Not actually needed as we're not assigning, but clearer
-    while (a < 10) & (carry_on) :
-        yield a			# Returns control and waits next call.
-        a = a + 1
+        print(agents[i][0],agents[i][1])
 
 
-#animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=10)
-animation = matplotlib.animation.FuncAnimation(fig, update, frames=gen_function, repeat=False)
-
-
+animation = matplotlib.animation.FuncAnimation(fig, update, interval=1)
 
 matplotlib.pyplot.show()
-
-
-
-
-
-
-
-
-
-
-
 
 
 
