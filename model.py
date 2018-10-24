@@ -24,7 +24,6 @@ reader = csv.reader(f, quoting=csv.QUOTE_NONNUMERIC)
 for row in reader:	
     rowlist = [] 
     environment.append(rowlist)
-    environment = []
     for value in row:
         rowlist.append(value)		
 f.close() 
@@ -32,6 +31,7 @@ f.close()
 # Make the agents.
 for i in range(num_of_agents):
     agents.append(agentframework.Agent(environment))
+    random.shuffle(agents)
     agents[i].share_with_neighbours(neighbourhood, agents)
 
 # Move the agents.

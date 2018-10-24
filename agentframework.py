@@ -6,8 +6,8 @@ import matplotlib.pyplot
 class Agent():
         
         def __init__ (self, environment):
-            self.x = random.randint(0,100)
-            self.y = random.randint(0,100)
+            self.x = random.randint(0,250)
+            self.y = random.randint(0,250)
             
             self.environment = environment
             self.store = 0
@@ -35,14 +35,14 @@ class Agent():
             for j in range (self.num_of_iterations):
                 for i in range (self.num_of_agents):
                     if random.random() < 0.5:
-                        self.y = (self.y + 1) % 99
+                        self.y = (self.y + 1) % 249
                     else:
-                        self.y = (self.y - 1) % 99
+                        self.y = (self.y - 1) % 249
                         
                     if random.random() < 0.5:
-                        self.x = (self.x + 1) % 99
+                        self.x = (self.x + 1) % 249
                     else:
-                        self.x = (self.x - 1) % 99 
+                        self.x = (self.x - 1) % 249 
                         
            # for i in range (self.num_of_agents):
                 #matplotlib.pyplot.scatter(self.x,self.y)
