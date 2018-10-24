@@ -6,8 +6,8 @@ import matplotlib.pyplot
 class Agent():
         
         def __init__ (self, environment):
-            self.x = random.randint(0,99)
-            self.y = random.randint(0,99)
+            self.x = random.randint(0,100)
+            self.y = random.randint(0,100)
             
             self.environment = environment
             self.store = 0
@@ -42,7 +42,7 @@ class Agent():
                     if random.random() < 0.5:
                         self.x = (self.x + 1) % 99
                     else:
-                        self.x = (self.x - 1) % 99  
+                        self.x = (self.x - 1) % 99 
                         
            # for i in range (self.num_of_agents):
                 #matplotlib.pyplot.scatter(self.x,self.y)
@@ -53,9 +53,9 @@ class Agent():
             if self.environment[self.y][self.x] > 10:
                 self.environment[self.y][self.x] -= 10
                 self.store += 1
-                print(self.store)
-            else:
-                print('cats')
+              #  print(self.store)
+         #   else:
+              #  print('cats')
                 
         def share_with_neighbours(self, neighbourhood:int, agents):
             for agent in agents:
@@ -65,8 +65,8 @@ class Agent():
                     ave = sum /2
                     self.store = ave
                     agent.store = ave
-                    print(self.store)
-                    print("sharing " + str(dist) + " " + str(ave))
+                  #  print(self.store)
+                   # print("sharing " + str(dist) + " " + str(ave))
             
         #share information with agents 
         #def share_with_neighbours (neighbourhood):
