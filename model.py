@@ -32,6 +32,7 @@ f.close()
 # Make the agents.
 for i in range(num_of_agents):
     agents.append(agentframework.Agent(environment))
+    agents[i].share_with_neighbours(neighbourhood, agents)
 
 # Move the agents.
 for i in range (num_of_iterations):
@@ -39,6 +40,9 @@ for i in range (num_of_iterations):
         agents[j].move()
         agents[j].eat()
         agents[j].share_with_neighbours(neighbourhood, agents)
+        
+        animation = matplotlib.animation.FuncAnimation(fig, num_of_iterations, interval=1, repeat=False, frames=num_of_iterations)
+        matplotlib.pyplot.show(animation)
 
 
 #Find out the distances of the agents and don't compare same item to same item 
@@ -54,6 +58,5 @@ for agents_row_a in agents:
 matplotlib.pyplot.xlim(0, 100)
 matplotlib.pyplot.ylim(0, 100)
 matplotlib.pyplot.imshow(environment)
-for i in range(num_of_agents):
-    matplotlib.pyplot.scatter(agents[i].x,agents[i].y)
-matplotlib.pyplot.show()
+#for i in range(num_of_agents):
+ #   matplotlib.pyplot.scatter(agents[i].x,agents[i].y)
