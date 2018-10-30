@@ -3,7 +3,7 @@ import matplotlib.pyplot
 
 
 #Agent class
-class Agent():
+class Wolf():
         
         def __init__ (self, environment):
             self.x = random.randint(0,250)
@@ -35,24 +35,29 @@ class Agent():
             for j in range (self.num_of_iterations):
                 for i in range (self.num_of_agents):
                     if random.random() < 0.5:
-                        self.y = (self.y + 1) % 245
+                        self.y = (self.y + 1) % 249
                     else:
-                        self.y = (self.y - 1) % 245
+                        self.y = (self.y - 1) % 249
                         
                     if random.random() < 0.5:
-                        self.x = (self.x + 1) % 245
+                        self.x = (self.x + 1) % 249
                     else:
-                        self.x = (self.x - 1) % 245 
+                        self.x = (self.x - 1) % 249 
                         
            # for i in range (self.num_of_agents):
                 #matplotlib.pyplot.scatter(self.x,self.y)
                 #print(self.agents[i][0],self.agents[i][1])
-                        
+ 
+        def find (self, agent):
+            distance_between () 
+            return output 
+        find closest sheep
+        pass closest sheep to the model 
+                       
             
         def eat(self): 
-            if self.environment[self.y][self.x] > 10:
-                self.environment[self.y][self.x] -= 10
-                self.store += 1
+            if agentdistance < 10:
+                delete agent 
               #  print(self.store)
          #   else:
               #  print('cats')
@@ -65,14 +70,3 @@ class Agent():
                     ave = sum /2
                     self.store = ave
                     agent.store = ave
-                  #  print(self.store)
-                   # print("sharing " + str(dist) + " " + str(ave))
-            
-        #share information with agents 
-        #def share_with_neighbours (neighbourhood):
-         #   return (neighbourhood)
-
-#def update(num_of_iterations):
-    
-#animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, repeat=False, frames=num_of_iterations)
-        

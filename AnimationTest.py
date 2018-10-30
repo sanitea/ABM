@@ -11,7 +11,7 @@ fig = matplotlib.pyplot.figure(figsize=(7, 7))
 ax = fig.add_axes([0, 0, 1, 1])
 
 
-#ax.set_autoscale_on(False)
+ax.set_autoscale_on(False)
 
 # Make the agents.
 for i in range(num_of_agents):
