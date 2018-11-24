@@ -12,7 +12,7 @@ class Agent():
             self.environment = environment
             self.store = 0
             
-            self.agents = []
+            self.agents_list = []
 
             self.num_of_iterations = 100
             self.num_of_agents = 10 
@@ -23,11 +23,13 @@ class Agent():
             self.agents_row_a = [self.x, self.y]
             self.agents_row_b = [self.x, self.y]
         
-        def distance_between(self, agent):
-                return (((self.x - agent.x)**2) + ((self.y - agent.y)**2))**0.5 
+        def distance_between(self, agents):
+                return (((self.x - agents.x)**2) + ((self.y - agents.y)**2))**0.5 
             
         #def update(num_of_iterations):
-            
+        
+        def pop(self, agents):
+            agents_list.append(agents)
             
             
         def move(self):
@@ -35,24 +37,20 @@ class Agent():
             for j in range (self.num_of_iterations):
                 for i in range (self.num_of_agents):
                     if random.random() < 0.5:
-                        self.y = (self.y + 1) % 245
+                        agents[i].y  = (agents[i].y + 1) % 99 
                     else:
-                        self.y = (self.y - 1) % 245
-                        
+                        agents[i].y  = (agents[i].y - 1) % 99
+                    
                     if random.random() < 0.5:
-                        self.x = (self.x + 1) % 245
+                        agents[i].x  = (agents[i].x + 1) % 99 
                     else:
-                        self.x = (self.x - 1) % 245 
-                        
-           # for i in range (self.num_of_agents):
-                #matplotlib.pyplot.scatter(self.x,self.y)
-                #print(self.agents[i][0],self.agents[i][1])
+                        agents[i].x  = (agents[i].x - 1) % 99 
                         
             
         def eat(self): 
             if self.environment[self.y][self.x] > 10:
-                self.environment[self.y][self.x] -= 10
-                self.store += 1
+                self.environment[self.y][self.x] - 10
+                self.store + 1
               #  print(self.store)
          #   else:
               #  print('cats')
