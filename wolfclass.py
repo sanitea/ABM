@@ -13,7 +13,7 @@ class Wolf():
             self.store = 0
             
             self.agents = agents
-            self.wolves = wolves
+            self.num_of_wolves = len(wolves) - 1
 
             self.num_of_iterations = 100
             self.num_of_agents = 10 
@@ -45,7 +45,8 @@ class Wolf():
             for agent in self.agents:
                 dist = self.distance_between(agent)
                 if dist <= neighbourhood:
-                    del agent
+                    agent.store = 0
+                    print ("ate sheep")
                        
                 
  

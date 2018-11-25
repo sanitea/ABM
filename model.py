@@ -14,17 +14,16 @@ def distance_between(agents_row_a, agents_row_b):
     return (((agents_row_a.x - agents_row_b.x)**2) + 
     ((agents_row_a.y - agents_row_b.y)**2))**0.5
             
-def remove_dead(self):
-# Remove all dead agents
-    self.agents[:] = [x for x in self.agents if x.type != 'Dead']
 
-num_of_agents = 10
+
+num_of_sheep = 10
+num_of_wolves = 5
 frame_number = 50
-neighbourhood = 20
+neighbourhood = 10
 agents = []
 environment = []
 wolves = []
-g = 'Sheep'
+dead_sheep = []
 
 fig = matplotlib.pyplot.figure(figsize=(7, 7))
 #ax = fig.add_axes([0, 0, 1, 1])
@@ -41,44 +40,56 @@ for row in reader:
 f.close() 
 
 # Make the agents.
-for i in range(num_of_agents):
+for i in range(num_of_sheep):
     agents.append(agentframework.Agent(environment, agents, wolves))
-    wolves.append(wolfclass.Wolf(environment, agents, wolves))
-    
     agents[i].share_with_neighbours(neighbourhood, agents)
+    
+#Make Wolves
+for i in range(num_of_wolves):
+    wolves.append(wolfclass.Wolf(environment, agents, wolves))
 
 # Move the agents.
 def update (frame_number):
 
     for i in range (frame_number):
         fig.clear()
-        for j in range(num_of_agents):
+        matplotlib.pyplot.imshow(environment, vmin = 0, vmax = 250)
+        
+        for j in range(num_of_sheep):
 
             random.shuffle(agents)
-            remove_dead(agents)
             
-            agents[j].move()
-            wolves[j].move()
+            #Move agents
+            agents[len(agents) -1].move()
+            agents[len(agents) -1].eat()
+            agents[len(agents) -1].check_status()
             
-            agents[j].eat()
+            agents[len(agents) -1].share_with_neighbours(neighbourhood, agents)
+            sort_dead(agents)
             
-            agents[j].check_status()
-            
-            agents[j].share_with_neighbours(neighbourhood, agents)
-            wolves[j].share_with_neighbours(neighbourhood, agents)
-            matplotlib.pyplot.imshow(environment, vmin = 0, vmax = 250)
+        for j in range(num_of_wolves):
+            wolves[j - 1].move()
+            wolves[j - 1].share_with_neighbours(neighbourhood, agents)
             
         for k in range(0,len(agents)):
-                        
-            matplotlib.pyplot.scatter(agents[k].x,agents[k].y, marker="D",  color='white')
-
+            matplotlib.pyplot.scatter(agents[k].x,agents[k].y, marker="o",  color='white')
             
         for k in range(0,len(wolves)):
-            matplotlib.pyplot.scatter(wolves[k].x,wolves[k].y, marker="D",  color='grey')
+            matplotlib.pyplot.scatter(wolves[k].x,wolves[k].y, marker="o",  color='black')
+            
+        for k in range(0,len(dead_sheep)):
+            matplotlib.pyplot.scatter(dead_sheep[k].x,dead_sheep[k].y, marker="D",  color='red')
 
             matplotlib.pyplot.show()
 
-   
+def sort_dead(self):
+# Remove all dead agents
+    for item in agents:
+        if item.status == 'dead':
+            dead_sheep.append(item)
+    agents[:] = [x for x in agents if x.status == 'alive']   
+    print(str(len(agents)))
+    print(str(len(dead_sheep)))
 
 animation = matplotlib.animation.FuncAnimation(fig, update, frames=frame_number, repeat=False)
 #canvas.show() 

@@ -10,7 +10,7 @@ class Agent():
             self.y = random.randint(0,250)
             
             self.environment = environment
-            self.store = 0
+            self.store = 10
             
             self.agents = agents
             self.num_of_iterations = 100
@@ -22,7 +22,7 @@ class Agent():
             self.agents_row_a = [self.x, self.y]
             self.agents_row_b = [self.x, self.y]
             
-            self.dead = False 
+            self.status = 'alive'
         
         def distance_between(self, agent):
                 return (((self.x - agent.x)**2) + ((self.y - agent.y)**2))**0.5 
@@ -69,8 +69,8 @@ class Agent():
         def check_status(self):
         # Check for death    
             if self.store < 5:
-                self.dead = True
-                self.type = 'Dead'
+                self.status = 'dead'
+
             
 #def update(num_of_iterations):
     
