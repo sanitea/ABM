@@ -26,7 +26,7 @@ wolves = []
 dead_sheep = []
 
 fig = matplotlib.pyplot.figure(figsize=(7, 7))
-#ax = fig.add_axes([0, 0, 1, 1])
+ax = fig.add_axes([0, 0, 1, 1])
 
 
 #Environment. Empty row, append rowlist to environment, append rowlist. 
@@ -72,18 +72,19 @@ def update (frame_number):
             wolves[j - 1].share_with_neighbours(neighbourhood, agents)
             
         for k in range(0,len(agents)):
-            matplotlib.pyplot.scatter(agents[k].x,agents[k].y, marker="o",  color='white')
+            matplotlib.pyplot.scatter(agents[k].x,agents[k].y, marker="o",  color='white', label = 'sheep')
             
         for k in range(0,len(wolves)):
-            matplotlib.pyplot.scatter(wolves[k].x,wolves[k].y, marker="o",  color='black')
+            matplotlib.pyplot.scatter(wolves[k].x,wolves[k].y, marker="o",  color='black', label = 'wolf')
             
         for k in range(0,len(dead_sheep)):
-            matplotlib.pyplot.scatter(dead_sheep[k].x,dead_sheep[k].y, marker="D",  color='red')
+            matplotlib.pyplot.scatter(dead_sheep[k].x,dead_sheep[k].y, marker="D",  color='red', label= 'dead')
 
             matplotlib.pyplot.show()
 
+
 def sort_dead(self):
-# Remove all dead agents
+# Remove all dead agents from sheep list and append them into dead_sheep
     for item in agents:
         if item.status == 'dead':
             dead_sheep.append(item)
@@ -93,3 +94,7 @@ def sort_dead(self):
 
 animation = matplotlib.animation.FuncAnimation(fig, update, frames=frame_number, repeat=False)
 #canvas.show() 
+
+matplotlib.animation.Animation.save('sheep_die.mp4')
+matplotlib.pyplot.legend(bbox_to_anchor=(1, 1),
+           bbox_transform=pyplot.gcf().transFigure)

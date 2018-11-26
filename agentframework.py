@@ -6,15 +6,15 @@ import matplotlib.pyplot
 class Agent():
         
         def __init__ (self, environment, agents, wolves):
-            self.x = random.randint(0,220)
-            self.y = random.randint(0,250)
+            self.x = random.randint(10,220)
+            self.y = random.randint(10,250)
             
             self.environment = environment
             self.store = 10
             
             self.agents = agents
             self.num_of_iterations = 100
-            self.num_of_agents = 10 
+            self.num_of_agents = len(agents) 
             
             self.neighbourhood = list 
             self.distance = 0
@@ -33,20 +33,20 @@ class Agent():
            # for j in range (self.num_of_iterations):
            for i in range (self.num_of_agents):
                if random.random() < 0.5:
-                   self.y = (self.y + 1) % 250
+                   self.y = (self.y + 1) % 300
                else:
-                   self.y = (self.y - 1) % 250
+                   self.y = (self.y - 1) % 300
                         
                if random.random() < 0.5:
-                   self.x = (self.x + 1) % 250
+                   self.x = (self.x + 1) % 300
                else:
-                   self.x = (self.x - 1) % 250 
+                   self.x = (self.x - 1) % 300 
                     
                         
             
         def eat(self): 
             if self.environment[self.y][self.x] > 10:
-                self.environment[self.y][self.x] -= 10
+                self.environment[self.y][self.x] -= 50
                 self.store += 1
               #  print(self.store)
          #   else:
