@@ -4,7 +4,7 @@ import agentframework
 import csv 
 import matplotlib.animation 
 import wolfclass
-import matplotlib.patches as mpatches
+import matplotlib.lines as mlines
 
 #Function to work out the distance between models 
 def distance_between(agents_row_a, agents_row_b):
@@ -47,14 +47,14 @@ for i in range(num_of_wolves):
     wolves.append(wolfclass.Wolf(environment, sheep, wolves))
   
 #Labels 
-sheep_label = mpatches.Patch(color='white', marker='o',
-                          label='Sheep')
+sheep_label = mlines.Line2D([], [], color='white', marker='o',
+                          markersize=8, label='Sheep')
 
-wolf_label = mpatches.Patch(color='black', marker='o',
-                          label='Wolf')
+wolf_label = mlines.Line2D([], [], color='black', marker='o',
+                          markersize=8, label='Wolf')
 
-dead_label = mpatches.Patch(color='red', marker='x',
-                          label=' Dead Sheep')
+dead_label = mlines.Line2D([], [], color='red', marker='x',
+                          markersize=8, label=' Dead Sheep')
 
 
 
@@ -117,4 +117,4 @@ def sort_dead(self):
 
 animation = matplotlib.animation.FuncAnimation(fig, update, frames=frame_number, repeat=False)
 
-animation.save('animation12.gif', writer='imagemagick', fps=1)
+animation.save('animation1.gif', writer='imagemagick', fps=1)
