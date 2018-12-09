@@ -32,16 +32,16 @@ class Wolf():
         def move(self):
            for i in range (self.num_of_agents):
                if random.random() < 0.5:
-                   self.y = (self.y + 1) % 300
+                   self.y = (self.y + 1) % 295
                else:
-                   self.y = (self.y - 1) % 300
+                   self.y = (self.y - 1) % 295
                         
                if random.random() < 0.5:
-                   self.x = (self.x + 1) % 300
+                   self.x = (self.x + 1) % 295
                else:
-                   self.x = (self.x - 1) % 300 
+                   self.x = (self.x - 1) % 295 
  
-        def share_with_neighbours(self, neighbourhood, agents):
+        def check_for_sheep(self, neighbourhood, agents):
             for agent in self.agents:
                 dist = self.distance_between(agent)
                 if dist <= neighbourhood:

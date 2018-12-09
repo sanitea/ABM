@@ -23,34 +23,37 @@ class Agent():
             self.agents_row_b = [self.x, self.y]
             
             self.status = 'alive'
-        
+ 
+ #Function to calculate the distance between agents      
         def distance_between(self, agent):
                 return (((self.x - agent.x)**2) + ((self.y - agent.y)**2))**0.5 
                     
             
         def move(self):
-    #Agents Moving. Modulus operator = boundaries using torus method. 
-           # for j in range (self.num_of_iterations):
+ #Agents Moving. Modulus operator = boundaries using torus method. 
+# for j in range (self.num_of_iterations):
            for i in range (self.num_of_agents):
                if random.random() < 0.5:
-                   self.y = (self.y + 1) % 300
+                   self.y = (self.y + 1) % 295
                else:
-                   self.y = (self.y - 1) % 300
+                   self.y = (self.y - 1) % 295
                         
                if random.random() < 0.5:
-                   self.x = (self.x + 1) % 300
+                   self.x = (self.x + 1) % 295
                else:
-                   self.x = (self.x - 1) % 300 
+                   self.x = (self.x - 1) % 295
                     
                         
-            
+#Check if there's still 'grass' left in the environment data-set, if there is the environment is 
+# decreased by ten and the sheep's store goes up by one. 
         def eat(self): 
-            if self.environment[self.y][self.x] > 10:
-                self.environment[self.y][self.x] -= 50
+            if self.environment[self.y][self.x] > 100:
+                self.environment[self.y][self.x] -= 10
                 self.store += 1
               #  print(self.store)
          #   else:
-              #  print('cats')
+              #  print('Checking 'Eat')
+
                 
         def share_with_neighbours(self, neighbourhood, agents):
             for agent in self.agents:
@@ -66,9 +69,10 @@ class Agent():
                   #  print(self.store)
                    # print("sharing " + str(dist) + " " + str(ave))
             
+#Check if the sheep's store has been depleted by wolf, if so mark change status to dead 
         def check_status(self):
         # Check for death    
-            if self.store < 5:
+            if self.store < 1:
                 self.status = 'dead'
 
             
