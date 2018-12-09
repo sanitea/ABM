@@ -5,16 +5,16 @@ import matplotlib.pyplot
 #Agent class
 class Agent():
         
-        def __init__ (self, environment, agents, wolves):
-            self.x = random.randint(10,220)
-            self.y = random.randint(10,250)
+        def __init__ (self, environment, sheep, wolves):
+            self.x = random.randint(50,220)
+            self.y = random.randint(30,250)
             
             self.environment = environment
             self.store = 10
             
-            self.agents = agents
+            self.sheep = sheep
             self.num_of_iterations = 100
-            self.num_of_agents = len(agents) 
+            self.num_of_agents = len(sheep) 
             
             self.neighbourhood = list 
             self.distance = 0
@@ -34,36 +34,36 @@ class Agent():
 # for j in range (self.num_of_iterations):
            for i in range (self.num_of_agents):
                if random.random() < 0.5:
-                   self.y = (self.y + 1) % 295
+                   self.y = (self.y + 1) % len(self.environment[0])
                else:
-                   self.y = (self.y - 1) % 295
+                   self.y = (self.y - 1) % len(self.environment[0])
                         
                if random.random() < 0.5:
-                   self.x = (self.x + 1) % 295
+                   self.x = (self.x + 1) % len(self.environment[0])
                else:
-                   self.x = (self.x - 1) % 295
+                   self.x = (self.x - 1) % len(self.environment[0])
                     
                         
 #Check if there's still 'grass' left in the environment data-set, if there is the environment is 
 # decreased by ten and the sheep's store goes up by one. 
         def eat(self): 
             if self.environment[self.y][self.x] > 100:
-                self.environment[self.y][self.x] -= 10
+                self.environment[self.y][self.x] -= 40
                 self.store += 1
               #  print(self.store)
          #   else:
               #  print('Checking 'Eat')
 
                 
-        def share_with_neighbours(self, neighbourhood, agents):
-            for agent in self.agents:
+        def share_with_neighbours(self, neighbourhood, sheep):
+            for agent in self.sheep:
                 dist = self.distance_between(agent)
                 if dist <= neighbourhood:
                     sum = self.store + agent.store
                     ave = sum /2
                     self.store = ave
                     agent.store = ave
-                    print("sharing " + str(dist) + " " + str(ave))
+                    #print("sharing " + str(dist) + " " + str(ave))
                     
               #  if self.store > 100:
                   #  print(self.store)
@@ -72,7 +72,7 @@ class Agent():
 #Check if the sheep's store has been depleted by wolf, if so mark change status to dead 
         def check_status(self):
         # Check for death    
-            if self.store < 1:
+            if self.store < 5:
                 self.status = 'dead'
 
             
