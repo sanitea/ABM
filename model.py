@@ -1,6 +1,6 @@
 import random
 import matplotlib.pyplot as plt
-import agentframework
+import sheepClass
 import csv 
 import matplotlib.animation 
 import wolfclass
@@ -11,10 +11,10 @@ def distance_between(agents_row_a, agents_row_b):
     return (((agents_row_a.x - agents_row_b.x)**2) + 
     ((agents_row_a.y - agents_row_b.y)**2))**0.5
             
-#Variables 
+#Intial Variables 
 num_of_sheep = 10
 num_of_wolves = 2
-frame_number = 50
+frame_number = 100
 neighbourhood = 10 
 sheep = []
 environment = []
@@ -39,7 +39,7 @@ f.close()
 
 # Make the agents, append them to the environment, and then .
 for i in range(num_of_sheep):
-    sheep.append(agentframework.Agent(environment, sheep, wolves))
+    sheep.append(sheepClass.Sheep(environment, sheep, wolves))
     sheep[i].share_with_neighbours(neighbourhood, sheep)
     
 #Make Wolves
@@ -110,7 +110,9 @@ def sort_dead(self):
     for item in sheep:
         if item.status == 'dead':
             dead_sheep.append(item)
-    sheep[:] = [x for x in sheep if x.status == 'alive']   
+    for item in sheep:
+        if item.status == 'alive':
+            sheep.append(item)
     #print('Living sheep:' + str(len(sheep)))
     #print('Dead sheep:' + str(len(dead_sheep)))
     

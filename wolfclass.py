@@ -4,7 +4,7 @@ import matplotlib.pyplot
 
 #Agent class
 class Wolf():
-        
+    #Variables created on initialization, spawn location        
         def __init__ (self, environment, sheep, wolves):
             self.x = random.randint(20,250)
             self.y = random.randint(20,250)
@@ -42,12 +42,13 @@ class Wolf():
                else:
                    self.x = (self.x - 1) % len(self.environment[0])
  
- #Check if there are sheep within eating distance 
+ #Check if there are sheep within eating distance, if so reduce the agents store to 0
         def check_for_sheep(self, neighbourhood, sheep):
-            for agent in self.sheep:
-                dist = self.distance_between(agent)
+            for i in self.sheep:
+                dist = self.distance_between(i)
                 if dist <= neighbourhood:
-                    agent.store = 0
+                    self.store += 100
+                    i.store = 0
                     print ("ate sheep")
                        
                 
