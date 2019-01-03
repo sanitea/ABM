@@ -14,7 +14,7 @@ def distance_between(agents_row_a, agents_row_b):
 #Intial Variables 
 num_of_sheep = 10
 num_of_wolves = 2
-frame_number = 100
+frame_number = 50
 neighbourhood = 10 
 sheep = []
 environment = []
@@ -110,9 +110,7 @@ def sort_dead(self):
     for item in sheep:
         if item.status == 'dead':
             dead_sheep.append(item)
-    for item in sheep:
-        if item.status == 'alive':
-            sheep.append(item)
+    sheep[:] = [x for x in sheep if x.status == 'alive']   
     #print('Living sheep:' + str(len(sheep)))
     #print('Dead sheep:' + str(len(dead_sheep)))
     
